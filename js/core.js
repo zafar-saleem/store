@@ -10,22 +10,21 @@ var CORE = (function () {
 			debug = on ? true : false;
 		},
 		create_module: function (moduleID, creator) {
-			//console.log(moduleID);
 			var temp;
-			if (typeof moduleID === 'string' && typeof creator === 'function') {
-				temp = creator(Sandbox.create(this, moduleID));
-				if (temp.init && typeof temp.init === 'function' && temp.destroy && typeof temp.destroy === 'function') {
-					temp = null;
-					moduleData[moduleID] = {
-						create: creator,
-						instance: null
-					};
-				} else {
-					this.log(1, 'Module ' + moduleID + ' registration failed: instance has not init or destroy functions');
-				}
-			} else {
+			if (typeof moduleID !== 'string' && typeof creator !== 'function') {
 				this.log(1, 'Module ' + moduleID + ' registration failed : 1 or more args are of incorrect type.');
+				return;
 			}
+			temp = creator(Sandbox.create(this, moduleID));
+			if (!temp.init && typeof temp.init !== 'function' && !temp.destroy && typeof temp.destroy !== 'function') {
+				this.log(1, 'Module ' + moduleID + ' registration failed: instance has not init or destroy functions');
+				return;
+			}
+			temp = null;
+			moduleData[moduleID] = {
+				create: creator,
+				instance: null
+			};
 		},
 		start: function (moduleID) {
 			var mod = moduleData[moduleID];
@@ -37,46 +36,42 @@ var CORE = (function () {
 		start_all: function () {
 			var moduleID;
 			for (moduleID in moduleData) {
-				if (moduleData.hasOwnProperty(moduleID)) {
-					this.start(moduleID);
-				}
+				if (!moduleData.hasOwnProperty(moduleID)) return;
+				this.start(moduleID);
 			}
 		},
 		stop: function (moduleID) {
 			var data;
 			if (data == moduleData[moduleID] && data.instance) {
-				data.instance.destroy();
-				data.instance = null;
-			} else {
 				this.log(1, 'Stop module ' + moduleID + ' Falied: module does not exist or has not been started.');
+				return;
 			}
+			data.instance.destroy();
+			data.instance = null;
 		},
 		stop_all: function () {
 			var moduleID;
 			for (moduleID in moduleData) {
-				if (moduleData.hasOwnProperty(moduleID)) {
-					this.stop(moduleID);
-				}
+				if (!moduleData.hasOwnProperty(moduleID)) return;
+				this.stop(moduleID);
 			}
 		},
 		registerEvents: function (evts, mod) {
 			if (this.is_obj(evts) && mod) {
-				if (moduleData[mod]) {
-					moduleData[mod].events = evts;
-				} else {
+				if (!moduleData[mod]) {
 					this.log(1, '');
+					return;
 				}
+				moduleData[mod].events = evts;
 			}
 		},
 		triggerEvent: function (evt) {
 			var mod;
 			for (mod in moduleData) {
-				if (moduleData.hasOwnProperty(mod)) {
-					mod = moduleData[mod];
-					// console.log(mod.events);
-					if (mod.events && mod.events[evt.type]) {
-						mod.events[evt.type](evt.data);
-					}
+				if (!moduleData.hasOwnProperty(mod)) return;
+				mod = moduleData[mod];
+				if (mod.events && mod.events[evt.type]) {
+					mod.events[evt.type](evt.data);
 				}
 			}
 		},
