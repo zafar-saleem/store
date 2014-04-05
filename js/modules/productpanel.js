@@ -1,4 +1,4 @@
-CORE.create_module('product-panel', function (sb) {
+CORE.register('product-panel', function (sb) {
 	var products;
 
 	function eachProduct(fn) {

@@ -1,4 +1,4 @@
-CORE.create_module('shopping-cart', function (sb) {
+CORE.register('shopping-cart', function (sb) {
 	var cart, cartItem, emptyMessage;
 
 	return {

@@ -1,4 +1,4 @@
-CORE.create_module('filters-bar', function (sb) {
+CORE.register('filters-bar', function (sb) {
 	var filters;
 
 	return {

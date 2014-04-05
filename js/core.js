@@ -9,7 +9,7 @@ var CORE = (function () {
 		debug: function (on) { // to decide whether log errors in console or send them to server
 			debug = on ? true : false;
 		},
-		create_module: function (moduleID, creator) {
+		register: function (moduleID, creator) {
 			var temp;
 			if (typeof moduleID !== 'string' && typeof creator !== 'function') {
 				this.log(1, 'Module ' + moduleID + ' registration failed : 1 or more args are of incorrect type.');
@@ -33,7 +33,7 @@ var CORE = (function () {
 				mod.instance.init();
 			}
 		},
-		start_all: function () {
+		startAll: function () {
 			var moduleID;
 			for (moduleID in moduleData) {
 				if (!moduleData.hasOwnProperty(moduleID)) return;
@@ -49,7 +49,7 @@ var CORE = (function () {
 			data.instance.destroy();
 			data.instance = null;
 		},
-		stop_all: function () {
+		stopAll: function () {
 			var moduleID;
 			for (moduleID in moduleData) {
 				if (!moduleData.hasOwnProperty(moduleID)) return;

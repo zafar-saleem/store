@@ -1,4 +1,4 @@
-CORE.create_module('search-box', function (sb) {
+CORE.register('search-box', function (sb) {
 	var input, button, reset;
 	
 	return {
