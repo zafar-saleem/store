@@ -112,7 +112,6 @@ var CORE = (function () {
 						fn = evt;
 						evt = 'click';
 					}
-					// console.log(fn);
 					jQuery(element).bind(evt, fn);
 				} else {
 					// log wrong arguments
