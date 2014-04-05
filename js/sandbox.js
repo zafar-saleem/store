@@ -1,14 +1,12 @@
 var Sandbox = {
 	create: function (core, module_selector) {
-		var CONTAINER = core.dom.query('#' + module_selector);// parent of module in the DOM
+		var CONTAINER = core.dom.query('#' + module_selector); // parent of module in the DOM
 
 		return {
 			find: function (selector) {
-				//console.log(CONTAINER);
 				return CONTAINER.query(selector);
 			},
 			addEvent: function (element, type, fn) {
-				//console.log(element);
 				core.dom.bind(element, type, fn);
 			},
 			removeEvent: function (element, type, fn) {
