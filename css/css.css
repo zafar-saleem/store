@@ -61,6 +61,7 @@ h1, #search-box, #filters-bar {
 	padding: 0;
 }
 #shopping-cart li {
+	position: relative;
 	padding: 3px;
 	margin: 2px 0;
 	background: #ececec;
@@ -68,13 +69,20 @@ h1, #search-box, #filters-bar {
 }
 #shopping-cart .product-name {
 	display: inline-block;
-	width: 230px;
+	width: 200px;
+}
+#shopping-cart .quantity {
+	display: inline-block;
+	width: 40px;
 }
 #shopping-cart .price {
 	display: inline-block;
+	/*float: right;*/
+}
+#shopping-cart .delete {
+	display: inline-block;
 	float: right;
 }
-
 
 
 

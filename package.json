@@ -1,0 +1,30 @@
+{
+  "name": "store",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zafar-saleem/store.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/zafar-saleem/store/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-processhtml": "~0.3.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-uncss": "~0.3.2",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-csslint": "~0.2.0"
+  }
+}

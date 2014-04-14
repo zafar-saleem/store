@@ -8,57 +8,58 @@ var CORE = (function () {
 	debug = function (on) { // to decide whether log errors in console or send them to server
 		debug = on ? true : false;
 	},
-	register = function (moduleID, creator) {
+	register = function (moduleName, fn) {
 		var temp;
-		if (typeof moduleID !== 'string' && typeof creator !== 'function') {
-			this.log(1, 'Module ' + moduleID + ' registration failed : 1 or more args are of incorrect type.');
+		if (typeof moduleName !== 'string' && typeof fn !== 'function') {
+			log(1, 'Module ' + moduleName + ' registration failed : 1 or more args are of incorrect type.');
 			return;
 		}
-		temp = creator(Sandbox.create(this, moduleID));
+		//console.log(fn(Sandbox.create(CORE, moduleName)));
+		temp = fn(Sandbox.create(CORE, moduleName));
 		if (!temp.init && typeof temp.init !== 'function' && !temp.destroy && typeof temp.destroy !== 'function') {
-			this.log(1, 'Module ' + moduleID + ' registration failed: instance has not init or destroy functions');
+			log(1, 'Module ' + moduleName + ' registration failed: instance has not init or destroy functions');
 			return;
 		}
 		temp = null;
-		moduleData[moduleID] = {
-			create: creator,
+		moduleData[moduleName] = {
+			create: fn,
 			instance: null
 		};
 	},
-	start = function (moduleID) {
-		var mod = moduleData[moduleID];
+	start = function (moduleName) {
+		var mod = moduleData[moduleName];
 		if (mod) {
-			mod.instance = mod.create(Sandbox.create(this, moduleID));
+			mod.instance = mod.create(Sandbox.create(CORE, moduleName));
 			mod.instance.init();
 		}
 	},
 	startAll = function () {
-		var moduleID;
-		for (moduleID in moduleData) {
-			if (!moduleData.hasOwnProperty(moduleID)) return;
-			this.start(moduleID);
+		var moduleName;
+		for (moduleName in moduleData) {
+			if (!moduleData.hasOwnProperty(moduleName)) return;
+			start(moduleName);
 		}
 	},
-	stop = function (moduleID) {
+	stop = function (moduleName) {
 		var data;
-		if (data == moduleData[moduleID] && data.instance) {
-			this.log(1, 'Stop module ' + moduleID + ' Falied: module does not exist or has not been started.');
+		if (data == moduleData[moduleName] && data.instance) {
+			log(1, 'Stop module ' + moduleName + ' Falied: module does not exist or has not been started.');
 			return;
 		}
 		data.instance.destroy();
 		data.instance = null;
 	},
 	stopAll = function () {
-		var moduleID;
-		for (moduleID in moduleData) {
-			if (!moduleData.hasOwnProperty(moduleID)) return;
-			this.stop(moduleID);
+		var moduleName;
+		for (moduleName in moduleData) {
+			if (!moduleData.hasOwnProperty(moduleName)) return;
+			stop(moduleName);
 		}
 	},
 	registerEvents = function (evts, mod) {
-		if (this.is_obj(evts) && mod) {
+		if (is_obj(evts) && mod) {
 			if (!moduleData[mod]) {
-				this.log(1, '');
+				log(1, '');
 				return;
 			}
 			moduleData[mod].events = evts;
@@ -75,7 +76,7 @@ var CORE = (function () {
 		}
 	},
 	removeEvents = function (evts, mod) {
-		if (this.is_obj(evts) && mod && (mod = moduleData[mod]) && mod.events) {
+		if (is_obj(evts) && mod && (mod = moduleData[mod]) && mod.events) {
 			delete mod.events;
 		}
 	},
@@ -108,7 +109,8 @@ var CORE = (function () {
 					fn = evt;
 					evt = 'click';
 				}
-				jQuery(element).bind(evt, fn);
+				// $(document).on(evt, element, fn);
+				$(element).bind(evt, fn);
 			} else {
 				// log wrong arguments
 			}
@@ -128,7 +130,7 @@ var CORE = (function () {
 			return document.createElement(el);
 		},
 		apply_attrs: function (el, attrs) {
-			jQuery(el).attr(attrs);
+			$(el).attr(attrs);
 		}
 	},
 
@@ -153,5 +155,3 @@ var CORE = (function () {
 		dom: dom
 	};
 }());
-
-
