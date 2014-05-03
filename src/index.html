@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Online store</title>
+	<!-- build:css styles/compiled.min.css -->
 	<link rel="stylesheet" type="text/css" href="css/css.css">
+	<!-- /build -->
 </head>
 <body>
 	<div id="main">
@@ -52,6 +54,7 @@
 		</div>
 
 	</div>
+	<!-- build:js scripts/compiled.min.js -->
 	<script type="text/javascript" src="js/libs/jquery.js"></script>
 	<script type="text/javascript" src="js/core.js"></script>
 	<script type="text/javascript" src="js/sandbox.js"></script>
@@ -59,6 +62,7 @@
 	<script type="text/javascript" src="js/modules/productpanel.js"></script>
 	<script type="text/javascript" src="js/modules/searchbox.js"></script>
 	<script type="text/javascript" src="js/modules/shoppingcart.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+	<!-- /build -->
+	<script type="text/javascript">CORE.startAll();</script>
 </body>
 </html>

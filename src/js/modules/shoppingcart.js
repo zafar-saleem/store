@@ -1,7 +1,7 @@
 CORE.register('shopping-cart', function (sb) {
 	'use strict';
 	
-	var cart, cartItem, emptyMessage,
+	var cart, cartItems, emptyMessage,
 
 	init = function () {
 		cart = sb.find('ul')[0];
@@ -41,7 +41,7 @@ CORE.register('shopping-cart', function (sb) {
 	},
 
 	deleteIt = function () {
-		console.log('aljsdlaksjdlkas');
+		console.log('delete');
 	};
 
 	return {

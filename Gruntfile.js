@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 				// separator: ';'
 			},
 			target: {
-				src: ['dist/js/jquery.js', 'dist/js/**/*.js'], // make sure jquery is loaded first
+				src: ['dist/js/libs/jquery.js', 'dist/js/core.js', 'dist/js/sandbox.js', 'dist/js/modules/*.js'], // make sure jquery is loaded first
 				dest: 'dist/js/compiled.js'
 			}
 		},
@@ -88,5 +88,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-uncss');
 	
-	grunt.registerTask('default', ['jshint', 'uncss', 'csslint', 'copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
+	//grunt.registerTask('default', ['jshint', 'csslint', 'copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
+	grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
+	//grunt.registerTask('default', ['copy', 'concat', 'processhtml']);
 }
