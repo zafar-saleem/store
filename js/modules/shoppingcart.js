@@ -1,4 +1,6 @@
 CORE.register('shopping-cart', function (sb) {
+	'use strict';
+	
 	var cart, cartItem, emptyMessage,
 
 	init = function () {

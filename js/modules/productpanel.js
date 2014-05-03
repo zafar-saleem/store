@@ -1,4 +1,6 @@
 CORE.register('product-panel', function (sb) {
+	'use strict';
+	
 	var products,
 
 	init = function () {

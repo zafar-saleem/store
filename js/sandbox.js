@@ -1,5 +1,7 @@
 var Sandbox = {
 	create: function (core, module_selector) {
+		'use strict';
+		
 		var CONTAINER = core.dom.query('#' + module_selector); // parent of module in the DOM
 
 		return {

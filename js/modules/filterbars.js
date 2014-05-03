@@ -1,4 +1,6 @@
 CORE.register('filters-bar', function (sb) {
+	'use strict';
+	
 	var filters,
 
 	init = function () {

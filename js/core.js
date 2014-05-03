@@ -1,4 +1,6 @@
 var CORE = (function () {
+	'use strict';
+	
 	var moduleData = {}, // all the modules are stored here
 	to_s = function (anything) {
 		return Object.prototype.toString.call(anything);

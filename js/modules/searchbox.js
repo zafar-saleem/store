@@ -1,4 +1,6 @@
 CORE.register('search-box', function (sb) {
+	'use strict';
+	
 	var input, button, reset,
 	
 	init = function () {
