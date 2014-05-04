@@ -1,3 +1,4 @@
+/*global CORE:false*/
 CORE.register('search-box', function (sb) {
 	'use strict';
 	

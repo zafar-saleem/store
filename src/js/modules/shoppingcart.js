@@ -1,3 +1,4 @@
+/*global CORE:false*/
 CORE.register('shopping-cart', function (sb) {
 	'use strict';
 	

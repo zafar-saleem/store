@@ -38,8 +38,7 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				mangle: true,
-				compress: true,
-				banner: '/* Test banner */\n'
+				compress: true
 			},
 			target: {
 				src: 'dist/js/compiled.js',

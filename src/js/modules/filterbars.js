@@ -1,3 +1,5 @@
+/*global CORE:false*/
+
 CORE.register('filters-bar', function (sb) {
 	'use strict';
 	

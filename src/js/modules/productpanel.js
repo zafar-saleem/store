@@ -1,3 +1,4 @@
+/*global CORE:false*/
 CORE.register('product-panel', function (sb) {
 	'use strict';
 	
@@ -25,7 +26,7 @@ CORE.register('product-panel', function (sb) {
 		sb.ignore(['change-filter', 'reset-filter', 'perform-search', 'quit-search']);
 	},
 
-	filterProducts = function () {
+	filterProducts = function (e) {
 		sb.notify({
 			type: 'change-filter',
 			data: e.currentTarget.innerHTML
