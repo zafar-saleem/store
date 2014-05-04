@@ -1,10 +1,7 @@
 {
     // == Enforcing Options ===============================================
     //
-    // These options tell JSHint to be more strict towards your code. Use
-    // them if you want to allow only a safe subset of JavaScript, very
-    // useful when your codebase is shared with a big number of developers
-    // with different skill levels.
+    // These options tell JSHint to be more strict towards your code.
 
     "bitwise"       : true,     // Prohibit bitwise operators (&, |, ^, etc.).
     "curly"         : false,     // Require {} for every new block or scope.
@@ -24,9 +21,7 @@
     
     // == Relaxing Options ================================================
     //
-    // These options allow you to suppress certain types of warnings. Use
-    // them only if you are absolutely positive that you know what you are
-    // doing.
+    // These options allow you to suppress certain types of warnings.
     
     "asi"           : false,    // Tolerate Automatic Semicolon Insertion (no semicolons).
     "boss"          : true,    // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
@@ -81,14 +76,6 @@
     "onevar"        : false,    // Allow only one `var` statement per function.
     "passfail"      : false,    // Stop on first error.
     "white"         : false,    // Check against strict whitespace and indentation rules.
-    
-    // == Undocumented Options ============================================
-    //
-    // While I've found these options in [example1][2] and [example2][3]
-    // they are not described in the [JSHint Options documentation][4].
-    //
-    // [4]: http://www.jshint.com/options/
-
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
         //"exampleVar",
