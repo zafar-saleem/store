@@ -5,10 +5,10 @@ var CORE = (function () {
 	to_s = function (anything) {
 		return Object.prototype.toString.call(anything);
 	},
-	debug = true,
+	debuger = true,
 
 	debug = function (on) { // to decide whether log errors in console or send them to server
-		debug = on ? true : false;
+		debuger = on ? true : false;
 	},
 	register = function (moduleName, fn) {
 		var temp;
@@ -38,13 +38,15 @@ var CORE = (function () {
 	startAll = function () {
 		var moduleName;
 		for (moduleName in moduleData) {
-			if (!moduleData.hasOwnProperty(moduleName)) return;
+			if (!moduleData.hasOwnProperty(moduleName)) { 
+				return;
+			}
 			start(moduleName);
 		}
 	},
 	stop = function (moduleName) {
 		var data;
-		if (data == moduleData[moduleName] && data.instance) {
+		if (data === moduleData[moduleName] && data.instance) {
 			log(1, 'Stop module ' + moduleName + ' Falied: module does not exist or has not been started.');
 			return;
 		}
@@ -54,7 +56,9 @@ var CORE = (function () {
 	stopAll = function () {
 		var moduleName;
 		for (moduleName in moduleData) {
-			if (!moduleData.hasOwnProperty(moduleName)) return;
+			if (!moduleData.hasOwnProperty(moduleName)) {
+				return;
+			}
 			stop(moduleName);
 		}
 	},
@@ -70,7 +74,9 @@ var CORE = (function () {
 	triggerEvent = function (evt) {
 		var mod;
 		for (mod in moduleData) {
-			if (!moduleData.hasOwnProperty(mod)) return;
+			if (!moduleData.hasOwnProperty(mod)) {
+				return;
+			}
 			mod = moduleData[mod];
 			if (mod.events && mod.events[evt.type]) {
 				mod.events[evt.type](evt.data);
@@ -83,10 +89,10 @@ var CORE = (function () {
 		}
 	},
 	log = function (severity, message) {
-		if (debug) {
+		if (debuger) {
 			console[(severity === 1) ? 'log' : (severity === 2) ? 'warn' : 'error'](message);
 		} else {
-			// send error to server
+			log();
 		}
 	},
 	dom = {
@@ -102,7 +108,7 @@ var CORE = (function () {
 			ret.length = jqEls.length;
 			ret.query = function (sel) {
 				return self.query(sel, jqEls);
-			}
+			};
 			return ret;
 		},
 		bind: function (element, evt, fn) {
@@ -114,7 +120,7 @@ var CORE = (function () {
 				// $(document).on(evt, element, fn);
 				$(element).bind(evt, fn);
 			} else {
-				// log wrong arguments
+				CORE.log();
 			}
 		},
 		unbind: function (element, evt, fn) {
@@ -125,7 +131,7 @@ var CORE = (function () {
 				}
 				jQuery(element).unbind(evt, fn);
 			} else {
-				// log wrong arguments
+				CORE.log();
 			}
 		},
 		create: function (el) {

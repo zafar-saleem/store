@@ -15,7 +15,6 @@ var Sandbox = {
 				core.dom.unbind(element, type, fn);
 			},
 			notify: function (evt) {
-				console.log(evt);
 				if (core.is_obj(evt) && evt.type) {
 					core.triggerEvent(evt);
 				}
@@ -50,6 +49,6 @@ var Sandbox = {
 				}
 				return el;
 			}
-		}
+		};
 	}
 };

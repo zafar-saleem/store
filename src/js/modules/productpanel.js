@@ -36,7 +36,6 @@ CORE.register('product-panel', function (sb) {
 		reset();
 
 		eachProduct(function (product) {
-			console.log(product);
 			if (product.getAttribute('data-8088-keyword').toLowerCase().indexOf(filter.toLowerCase()) < 0) {
 				product.style.opacity = '0.2';
 			}

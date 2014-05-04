@@ -6,7 +6,7 @@ module.exports = function (grunt) {
 				jshintrc: '.jshintrc'
 			},
 			target: {
-				src: 'src/js/**/*.js'
+				src: ['src/js/*.js', 'src/js/modules/*.js']
 			}
 		},
 
@@ -88,7 +88,5 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-uncss');
 	
-	//grunt.registerTask('default', ['jshint', 'csslint', 'copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
-	grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
-	//grunt.registerTask('default', ['copy', 'concat', 'processhtml']);
+	grunt.registerTask('default', ['jshint', 'csslint', 'copy', 'concat', 'uglify', 'cssmin', 'clean', 'processhtml']);
 }
