@@ -31,8 +31,7 @@ CORE.register('shopping-cart', function (sb) {
 			entry = sb.create_element('li', { id: 'cart-' + product.id, children: [ 
 				sb.create_element('span', { 'class': 'product-name', text: product.name}),
 				sb.create_element('span', { 'class': 'quantity', text: '1' }),
-				sb.create_element('span', { 'class': 'price', text: '$' + product.price.toFixed(2) }),
-				sb.create_element('a', { 'class': 'delete', text: 'X', href: '#' })
+				sb.create_element('span', { 'class': 'price', text: '$' + product.price.toFixed(2) })
 			],
 			'class': 'cart_entry' });
 			cart.appendChild(entry);
