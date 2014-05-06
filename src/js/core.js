@@ -1,6 +1,4 @@
-// This declares to JSHint that $ is a global variable, 
-// and the false indicates that it should not be overridden
-/*global $:false, jQuery:false, Sandbox:false */
+/*global Sandbox:false */
 
 var CORE = (function () {
 	'use strict';

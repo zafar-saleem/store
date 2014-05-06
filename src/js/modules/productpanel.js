@@ -1,4 +1,3 @@
-/*global CORE:false*/
 CORE.register('product-panel', function (sb) {
 	'use strict';
 	
