@@ -100,13 +100,13 @@ var CORE = (function () {
 	dom = {
 		query: function (selector, context) {
 			var ret = {}, self = this, jqEls, i = 0;
-			if (context && context.find) { // context is jquery object which has children of this object
+			if (context && context.find) {
 				jqEls = context.find(selector);
 			} else {
 				jqEls = jQuery(selector);
 			}
 
-			ret = jqEls.get(); // here is the problem
+			ret = jqEls.get();
 			ret.length = jqEls.length;
 			ret.query = function (sel) {
 				return self.query(sel, jqEls);
